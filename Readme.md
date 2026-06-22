@@ -1,13 +1,66 @@
-# Solidity Storage Factory 🏭
+## Foundry
 
-This repository contains my smart contracts built during **Lesson 2 & Lesson 3** of Patrick Collins' Cyfrin Updraft Course. It demonstrates core Solidity architecture patterns, deployment mechanics, and advanced object-oriented programming in Web3.
+**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
 
-## Key Concepts Implemented
-- **Factory Pattern:** Deploying child smart contracts (`SimpleStorage`) dynamically from a master contract (`StorageFactory`).
-- **Inter-Contract Interaction:** Calling external contract functions via ABI and address arrays.
-- **Inheritance & Polymorphism:** Extending base contract logic using `is`, `virtual`, and `override` keywords in `ExtraStorage`.
-- **Data Structures:** Efficient lookups using Solidity `mappings`, `structs`, and dynamic arrays.
+Foundry consists of:
 
-## Tech Stack
-- **Language:** Solidity (^0.8.18)
-- **Environment:** Remix IDE / EVM Sandbox
+- **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
+- **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
+- **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
+- **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+
+## Documentation
+
+https://book.getfoundry.sh/
+
+## Usage
+
+### Build
+
+```shell
+$ forge build
+```
+
+### Test
+
+```shell
+$ forge test
+```
+
+### Format
+
+```shell
+$ forge fmt
+```
+
+### Gas Snapshots
+
+```shell
+$ forge snapshot
+```
+
+### Anvil
+
+```shell
+$ anvil
+```
+
+### Deploy
+
+```shell
+$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
+```
+
+### Cast
+
+```shell
+$ cast <subcommand>
+```
+
+### Help
+
+```shell
+$ forge --help
+$ anvil --help
+$ cast --help
+```
