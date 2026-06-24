@@ -4,8 +4,10 @@ permissions: {}
 
 on:
   push:
+    branches: [ main, develop ]  # main branch එකට push කරන විට විතරක්
   pull_request:
-  workflow_dispatch:
+    branches: [ main ]
+  workflow_dispatch:             # Manual trigger
 
 jobs:
   check:
@@ -33,3 +35,18 @@ jobs:
 
       - name: Run Forge tests
         run: forge test -vvv
+
+      - name: Run Forge coverage
+        run: forge coverage
+
+      - name: Run Forge snapshot
+        run: forge snapshot
+
+      - name: Upload coverage report    # ⬅️ New: Coverage report upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage/
+
+      - name: Check gas usage           # ⬅️ New: Gas usage check
+        run: forge test --gas-report
