@@ -6,20 +6,21 @@ import "./SimpleStorage.sol";
 contract StorageFactory {
     SimpleStorage[] public simpleStorageArray;
 
-    event ContractCreated(address indexed contractAddress, uint256 index);
-    event ValueStored(uint256 indexed index, uint256 value);
+    // Custom errors
+    error InvalidIndex(uint256 index);
 
     function createSimpleStorageContract() public {
         SimpleStorage simpleStorageContract = new SimpleStorage();
         simpleStorageArray.push(simpleStorageContract);
-        emit ContractCreated(address(simpleStorageContract), simpleStorageArray.length - 1);
     }
 
     function sfStore(uint256 _simpleStorageIndex, uint256 _simpleStorageNumber) public {
+        require(_simpleStorageIndex < simpleStorageArray.length, InvalidIndex(_simpleStorageIndex));
         simpleStorageArray[_simpleStorageIndex].store(_simpleStorageNumber);
     }
 
     function sfGet(uint256 _simpleStorageIndex) public view returns (uint256) {
+        require(_simpleStorageIndex < simpleStorageArray.length, InvalidIndex(_simpleStorageIndex));
         return simpleStorageArray[_simpleStorageIndex].retrieve();
     }
 }

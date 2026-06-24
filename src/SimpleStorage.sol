@@ -10,12 +10,12 @@ contract SimpleStorage {
         string name;
     }
 
+    Person[] public listOfPeople;
+    mapping(string => uint256) public nameToFavoriteNumber;
+
     constructor() {
         owner = msg.sender;
     }
-
-    Person[] public listOfPeople;
-    mapping(string => uint256) public nameToFavoriteNumber;
 
     function store(uint256 _favoriteNumber) public virtual {
         require(msg.sender == owner, "Only owner can store");
@@ -29,13 +29,5 @@ contract SimpleStorage {
     function addPerson(string memory _name, uint256 _favoriteNumber) public {
         listOfPeople.push(Person(_favoriteNumber, _name));
         nameToFavoriteNumber[_name] = _favoriteNumber;
-    }
-
-    error InvalidIndex(uint256 index);
-    error OnlyOwner();
-
-    function sfGet(uint256 _simpleStorageIndex) public view returns (uint256) {
-        require(_simpleStorageIndex < simpleStorageArray.length, InvalidIndex(_simpleStorageIndex));
-        return simpleStorageArray[_simpleStorageIndex].retrieve();
     }
 }
