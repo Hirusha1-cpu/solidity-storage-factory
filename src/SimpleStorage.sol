@@ -2,8 +2,9 @@
 pragma solidity ^0.8.18;
 
 contract SimpleStorage {
+    error NotOwner();
     uint256 public favoriteNumber;
-    address public owner;
+    address public immutable owner;
 
     struct Person {
         uint256 favoriteNumber;
@@ -18,7 +19,7 @@ contract SimpleStorage {
     }
 
     function store(uint256 _favoriteNumber) public virtual {
-        require(msg.sender == owner, "Only owner can store");
+        if (msg.sender != owner) revert NotOwner();
         favoriteNumber = _favoriteNumber;
     }
 

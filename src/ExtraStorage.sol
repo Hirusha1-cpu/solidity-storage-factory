@@ -6,7 +6,7 @@ import "./SimpleStorage.sol";
 contract ExtraStorage is SimpleStorage {
     function store(uint256 _favoriteNumber) public override {
         // Owner check override කරන්න ඕන නම්
-        require(msg.sender == owner, "Only owner can store");
+       if (msg.sender != owner) revert NotOwner(); 
         favoriteNumber = _favoriteNumber + 5;
     }
 }

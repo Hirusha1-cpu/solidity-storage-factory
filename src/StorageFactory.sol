@@ -19,7 +19,7 @@ contract StorageFactory {
         simpleStorageArray[_simpleStorageIndex].store(_simpleStorageNumber);
     }
 
-    function sfGet(uint256 _simpleStorageIndex) public view returns (uint256) {
+    function sfGet(uint256 _simpleStorageIndex) external view returns (uint256) {
         require(_simpleStorageIndex < simpleStorageArray.length, InvalidIndex(_simpleStorageIndex));
         return simpleStorageArray[_simpleStorageIndex].retrieve();
     }
